@@ -785,6 +785,83 @@
                 reason: "For founding Red Cross and peace movement",
                 photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Henry_Dunant-young.jpg/200px-Henry_Dunant-young.jpg",
                 story: "The first Nobel Peace Prizes went to Henry Dunant, founder of the Red Cross after witnessing the Battle of Solferino, and Frédéric Passy, founder of the first French peace society. Dunant's 'A Memory of Solferino' led to the Geneva Conventions."
+            },
+            {
+                name: "Alva Myrdal & Alfonso García Robles",
+                year: 1982,
+                reason: "For work on disarmament negotiations",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Alva_Myrdal_1968.jpg/200px-Alva_Myrdal_1968.jpg",
+                story: "Swedish diplomat Alva Myrdal and Mexican diplomat Alfonso García Robles were honored for their work toward nuclear disarmament. Myrdal was a leading figure in the UN disarmament efforts, while García Robles was instrumental in creating the Treaty of Tlatelolco."
+            },
+            {
+                name: "Office of the UN High Commissioner for Refugees",
+                year: 1981,
+                reason: "For assistance to refugees",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/UNHCR_Logo.svg/200px-UNHCR_Logo.svg.png",
+                story: "UNHCR received its second Nobel Prize (first in 1954) for its work protecting refugees worldwide. The agency was facing massive refugee crises in Southeast Asia, Africa, and Latin America during this period."
+            },
+            {
+                name: "Adolfo Pérez Esquivel",
+                year: 1980,
+                reason: "For human rights advocacy in Latin America",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Adolfo_P%C3%A9rez_Esquivel_-_Feria_del_libro_de_Buenos_Aires_2016.jpg/200px-Adolfo_P%C3%A9rez_Esquivel_-_Feria_del_libro_de_Buenos_Aires_2016.jpg",
+                story: "Argentine human rights activist Adolfo Pérez Esquivel was honored for his non-violent human rights work during Argentina's military dictatorship. He was imprisoned and tortured for his activism but continued to advocate for the disappeared."
+            },
+            {
+                name: "Woodrow Wilson",
+                year: 1919,
+                reason: "For founding the League of Nations",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/President_Woodrow_Wilson_portrait_December_2_1912.jpg/200px-President_Woodrow_Wilson_portrait_December_2_1912.jpg",
+                story: "US President Woodrow Wilson was awarded for his efforts to establish the League of Nations after World War I. His Fourteen Points speech outlined a vision for lasting peace, though the US Senate ultimately rejected joining the League."
+            },
+            {
+                name: "George Marshall",
+                year: 1953,
+                reason: "For the Marshall Plan",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/George_Catlett_Marshall%2C_official_military_photo%2C_1946.JPEG/200px-George_Catlett_Marshall%2C_official_military_photo%2C_1946.JPEG",
+                story: "US Secretary of State George Marshall created the European Recovery Program (Marshall Plan) that helped rebuild Western Europe after WWII. The plan provided over $13 billion in economic assistance and helped prevent the spread of communism."
+            },
+            {
+                name: "Linus Pauling",
+                year: 1962,
+                reason: "For campaign against nuclear weapons testing",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Linus_Pauling_1962.jpg/200px-Linus_Pauling_1962.jpg",
+                story: "American chemist Linus Pauling was awarded for his campaign against nuclear weapons testing. He is one of only four people to win two Nobel Prizes (also Chemistry 1954) and the only person to win two unshared prizes."
+            },
+            {
+                name: "Dag Hammarskjöld",
+                year: 1961,
+                reason: "For strengthening the United Nations",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Dag_Hammarskj%C3%B6ld.jpg/200px-Dag_Hammarskj%C3%B6ld.jpg",
+                story: "UN Secretary-General Dag Hammarskjöld was posthumously awarded the prize after dying in a plane crash during a peace mission in the Congo. He transformed the UN into an active peacekeeping organization."
+            },
+            {
+                name: "Albert Lutuli",
+                year: 1960,
+                reason: "For non-violent struggle against apartheid",
+                photo: "https://upload.wikimedia.org/wikipedia/en/thumb/6/6a/Albert_Lutuli.jpg/200px-Albert_Lutuli.jpg",
+                story: "South African leader Albert Lutuli was the first African to receive the Nobel Peace Prize. As president of the African National Congress, he led non-violent resistance against apartheid, inspiring future leaders like Nelson Mandela."
+            },
+            {
+                name: "Philip Noel-Baker",
+                year: 1959,
+                reason: "For lifelong work for disarmament",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Philip_Noel-Baker.jpg/200px-Philip_Noel-Baker.jpg",
+                story: "British politician Philip Noel-Baker devoted his life to international disarmament. He was an Olympic athlete who competed in 1912, 1920, and 1924, and the only person to win both an Olympic medal and a Nobel Prize."
+            },
+            {
+                name: "Dominique Pire",
+                year: 1958,
+                reason: "For helping refugees escape camps",
+                photo: "https://upload.wikimedia.org/wikipedia/en/thumb/5/58/Dominique_Pire.jpg/200px-Dominique_Pire.jpg",
+                story: "Belgian Dominican priest Georges Pire was honored for his work helping refugees displaced by World War II. He established 'Europe of the Heart' villages to house refugees who had spent over a decade in camps."
+            },
+            {
+                name: "Lester B. Pearson",
+                year: 1957,
+                reason: "For organizing UN Emergency Force during Suez Crisis",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Lester_B._Pearson_with_a_globe.jpg/200px-Lester_B._Pearson_with_a_globe.jpg",
+                story: "Canadian diplomat Lester Pearson created the concept of UN peacekeeping forces during the 1956 Suez Crisis. His innovative solution prevented a wider war and established a model used in conflicts ever since."
             }
         ];
 
@@ -808,6 +885,14 @@
             document.getElementById('storyContent').classList.remove('expanded');
             document.getElementById('storyToggle').setAttribute('aria-expanded', 'false');
 
+            // Resume audio context if suspended (browser autoplay policy)
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+
+            // Play spin start sound
+            playSpinStartSound();
+
             let iterations = 0;
             const totalIterations = 40 + Math.floor(Math.random() * 20);
             let delay = 50;
@@ -817,6 +902,9 @@
                 const laureate = laureates[randomIndex];
                 display.innerHTML = `${laureate.name}<span class="year">${laureate.year}</span><span class="reason">${laureate.reason}</span>`;
                 photoContainer.innerHTML = `<img src="${laureate.photo}" alt="${laureate.name}" onerror="this.parentElement.innerHTML='<span class=\\'photo-placeholder\\'>🏅</span>'">`;
+
+                // Play tick sound
+                playTickSound();
 
                 iterations++;
 
@@ -840,6 +928,9 @@
 
                     box.classList.remove('spinning');
                     box.classList.add('winner');
+
+                    // Play win sound
+                    playWinSound();
 
                     // Show story section
                     storySection.classList.add('visible');
@@ -867,6 +958,66 @@
             content.classList.toggle('expanded');
             toggle.textContent = isExpanded ? 'READ FULL STORY' : 'HIDE STORY';
             toggle.setAttribute('aria-expanded', !isExpanded);
+        }
+
+        // Sound System using Web Audio API
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function playTickSound() {
+            const oscillator = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+
+            oscillator.frequency.value = 800 + Math.random() * 400;
+            oscillator.type = 'square';
+
+            gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.05);
+
+            oscillator.start(audioCtx.currentTime);
+            oscillator.stop(audioCtx.currentTime + 0.05);
+        }
+
+        function playWinSound() {
+            const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+            notes.forEach((freq, i) => {
+                setTimeout(() => {
+                    const oscillator = audioCtx.createOscillator();
+                    const gainNode = audioCtx.createGain();
+
+                    oscillator.connect(gainNode);
+                    gainNode.connect(audioCtx.destination);
+
+                    oscillator.frequency.value = freq;
+                    oscillator.type = 'square';
+
+                    gainNode.gain.setValueAtTime(0.15, audioCtx.currentTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+
+                    oscillator.start(audioCtx.currentTime);
+                    oscillator.stop(audioCtx.currentTime + 0.3);
+                }, i * 100);
+            });
+        }
+
+        function playSpinStartSound() {
+            const oscillator = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+
+            oscillator.frequency.setValueAtTime(200, audioCtx.currentTime);
+            oscillator.frequency.exponentialRampToValueAtTime(600, audioCtx.currentTime + 0.2);
+            oscillator.type = 'sawtooth';
+
+            gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.2);
+
+            oscillator.start(audioCtx.currentTime);
+            oscillator.stop(audioCtx.currentTime + 0.2);
         }
 
         function launchConfetti() {
