@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Background circle -->
+  <circle cx="32" cy="32" r="30" fill="#b8860b"/>
+  <circle cx="32" cy="32" r="26" fill="#ffd700"/>
+
+  <!-- Medal ribbon -->
+  <polygon points="20,8 26,20 32,8 38,20 44,8 44,2 20,2" fill="#c41e3a"/>
+  <polygon points="22,8 26,16 30,8" fill="#8b0000"/>
+  <polygon points="34,8 38,16 42,8" fill="#8b0000"/>
+
+  <!-- Inner medal detail -->
+  <circle cx="32" cy="38" r="18" fill="#daa520"/>
+  <circle cx="32" cy="38" r="14" fill="#ffd700"/>
+
+  <!-- Peace symbol / dove simplified -->
+  <text x="32" y="44" font-size="16" text-anchor="middle" fill="#b8860b" font-family="serif">P</text>
+
+  <!-- Pixel effect overlay dots -->
+  <rect x="16" y="28" width="4" height="4" fill="#fff" opacity="0.3"/>
+  <rect x="24" y="24" width="4" height="4" fill="#fff" opacity="0.2"/>
+  <rect x="40" y="32" width="4" height="4" fill="#fff" opacity="0.2"/>
+</svg>

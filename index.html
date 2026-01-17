@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- SEO Meta Tags -->
+    <title>Nobel Peace Prize Roulette - Discover Random Peace Prize Winners</title>
+    <meta name="description" content="Spin the roulette to discover random Nobel Peace Prize winners throughout history. Learn about their achievements and contributions to world peace.">
+    <meta name="keywords" content="Nobel Peace Prize, Nobel Prize, peace, roulette, random, winners, laureates, history, peace prize winners">
+    <meta name="author" content="Deviver">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nobelprize.deviverr.github.io">
+    <meta property="og:title" content="Nobel Peace Prize Roulette">
+    <meta property="og:description" content="Spin the roulette to discover random Nobel Peace Prize winners and their stories.">
+    <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/en/e/ed/Nobel_Prize.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@deviverrr">
+    <meta name="twitter:title" content="Nobel Peace Prize Roulette">
+    <meta name="twitter:description" content="Spin the roulette to discover random Nobel Peace Prize winners and their stories.">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://nobelprize.deviverr.github.io">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="favicon.svg">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6BX6MR1M3W"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-6BX6MR1M3W');
+    </script>
+
+    <!-- Pixel Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+    <!-- Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Nobel Peace Prize Roulette",
+        "description": "Interactive roulette game to discover random Nobel Peace Prize winners",
+        "url": "https://nobelprize.deviverr.github.io",
+        "applicationCategory": "Entertainment",
+        "operatingSystem": "Any"
+    }
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Press Start 2P', cursive;
+            background-color: #fafafa;
+            color: #222;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 20px;
+            padding-bottom: 100px;
+            image-rendering: pixelated;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            max-width: 600px;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        h1 {
+            font-size: 14px;
+            color: #b8860b;
+            margin-bottom: 30px;
+            text-shadow: 3px 3px 0px #daa520;
+            line-height: 1.8;
+        }
+
+        .roulette-box {
+            border: 4px solid #b8860b;
+            padding: 30px 20px;
+            margin-bottom: 30px;
+            min-height: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            box-shadow: 6px 6px 0px #ddd;
+        }
+
+        .photo-container {
+            width: 120px;
+            height: 120px;
+            border: 4px solid #b8860b;
+            margin-bottom: 15px;
+            overflow: hidden;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            image-rendering: pixelated;
+        }
+
+        .photo-placeholder {
+            font-size: 40px;
+        }
+
+        .display {
+            font-size: 11px;
+            line-height: 1.8;
+            color: #222;
+        }
+
+        .display .year {
+            font-size: 10px;
+            color: #b8860b;
+            margin-top: 8px;
+            display: block;
+        }
+
+        .display .reason {
+            font-size: 8px;
+            color: #666;
+            margin-top: 12px;
+            display: block;
+            line-height: 1.6;
+        }
+
+        .spin-btn {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 12px;
+            padding: 15px 40px;
+            background: #fff;
+            color: #b8860b;
+            border: 4px solid #b8860b;
+            cursor: pointer;
+            transition: all 0.1s;
+            text-transform: uppercase;
+        }
+
+        .spin-btn:hover:not(:disabled) {
+            background: #b8860b;
+            color: #fff;
+            box-shadow: 6px 6px 0px #8b6914;
+            transform: translate(-2px, -2px);
+        }
+
+        .spin-btn:active:not(:disabled) {
+            transform: translate(2px, 2px);
+            box-shadow: 3px 3px 0px #8b6914;
+        }
+
+        .spin-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Story Section */
+        .story-section {
+            margin-top: 25px;
+            text-align: left;
+            display: none;
+        }
+
+        .story-section.visible {
+            display: block;
+        }
+
+        .story-toggle {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 8px;
+            padding: 10px 20px;
+            background: #fff;
+            color: #666;
+            border: 3px solid #ccc;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.1s;
+        }
+
+        .story-toggle:hover {
+            border-color: #b8860b;
+            color: #b8860b;
+        }
+
+        .story-content {
+            background: #fff;
+            border: 3px solid #ddd;
+            padding: 20px;
+            margin-top: 15px;
+            font-size: 8px;
+            line-height: 2;
+            color: #444;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .story-content.expanded {
+            max-height: 500px;
+        }
+
+        .story-content h3 {
+            color: #b8860b;
+            margin-bottom: 15px;
+            font-size: 9px;
+        }
+
+        .footer-links {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            align-items: flex-end;
+            z-index: 100;
+            background: rgba(250, 250, 250, 0.9);
+            padding: 10px;
+            border: 2px solid #ddd;
+        }
+
+        .footer-links a {
+            font-size: 7px;
+            color: #888;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: #b8860b;
+        }
+
+        .spinning .display {
+            animation: flicker 0.1s infinite;
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .winner .display {
+            animation: pulse 0.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulse {
+            from { transform: scale(1); }
+            to { transform: scale(1.02); }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+                padding-bottom: 120px;
+            }
+
+            .container {
+                margin-top: 10px;
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 11px;
+                margin-bottom: 20px;
+            }
+
+            .roulette-box {
+                padding: 20px 15px;
+                margin-bottom: 20px;
+            }
+
+            .photo-container {
+                width: 100px;
+                height: 100px;
+            }
+
+            .display {
+                font-size: 9px;
+            }
+
+            .display .year {
+                font-size: 8px;
+            }
+
+            .display .reason {
+                font-size: 7px;
+            }
+
+            .spin-btn {
+                font-size: 10px;
+                padding: 12px 30px;
+            }
+
+            .story-toggle {
+                font-size: 7px;
+                padding: 8px 15px;
+            }
+
+            .story-content {
+                font-size: 7px;
+                padding: 15px;
+            }
+
+            .story-content h3 {
+                font-size: 8px;
+            }
+
+            .footer-links {
+                bottom: 10px;
+                right: 10px;
+                padding: 8px;
+            }
+
+            .footer-links a {
+                font-size: 6px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            h1 {
+                font-size: 9px;
+            }
+
+            .display {
+                font-size: 8px;
+            }
+
+            .photo-container {
+                width: 80px;
+                height: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="container" role="main">
+        <h1>NOBEL PEACE<br>PRIZE ROULETTE</h1>
+
+        <div class="roulette-box" id="rouletteBox" aria-live="polite">
+            <div class="photo-container" id="photoContainer">
+                <span class="photo-placeholder">🏅</span>
+            </div>
+            <div class="display" id="display">
+                PRESS SPIN<span class="year">---</span><span class="reason"></span>
+            </div>
+        </div>
+
+        <button class="spin-btn" id="spinBtn" onclick="spin()" aria-label="Spin the roulette">SPIN</button>
+
+        <section class="story-section" id="storySection" aria-label="Laureate story">
+            <button class="story-toggle" id="storyToggle" onclick="toggleStory()" aria-expanded="false">
+                READ FULL STORY
+            </button>
+            <article class="story-content" id="storyContent">
+                <h3 id="storyTitle">ABOUT THE LAUREATE</h3>
+                <p id="storyText"></p>
+            </article>
+        </section>
+    </main>
+
+    <nav class="footer-links" aria-label="Social links">
+        <a href="https://ko-fi.com/deviver" target="_blank" rel="noopener noreferrer">ko-fi.com/deviver</a>
+        <a href="https://deviver.art" target="_blank" rel="noopener noreferrer">deviver.art</a>
+        <a href="https://twitter.com/deviverrr" target="_blank" rel="noopener noreferrer">@deviverrr</a>
+    </nav>
+
+    <script>
+        const laureates = [
+            {
+                name: "Nihon Hidankyo",
+                year: 2024,
+                reason: "For efforts to achieve a world free of nuclear weapons",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Nihon_Hidankyo_logo.svg/200px-Nihon_Hidankyo_logo.svg.png",
+                story: "Nihon Hidankyo is a Japanese organization of atomic bomb survivors (Hibakusha) from Hiroshima and Nagasaki. Founded in 1956, the organization has worked tirelessly for decades to share testimony about the devastating humanitarian consequences of nuclear weapons. Their witness accounts have been instrumental in building the global movement against nuclear weapons, contributing to the adoption of the Treaty on the Prohibition of Nuclear Weapons in 2017."
+            },
+            {
+                name: "Narges Mohammadi",
+                year: 2023,
+                reason: "For her fight against the oppression of women in Iran",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Narges_Mohammadi_%28cropped%29.jpg/200px-Narges_Mohammadi_%28cropped%29.jpg",
+                story: "Narges Mohammadi is an Iranian human rights activist who has been arrested 13 times, convicted 5 times, and sentenced to a total of 31 years in prison. Despite the personal cost, she has continued her fight for women's rights and against the death penalty in Iran. She became a symbol of the 'Woman, Life, Freedom' movement that swept Iran in 2022."
+            },
+            {
+                name: "Ales Bialiatski, Memorial & CCL",
+                year: 2022,
+                reason: "For promoting civil society and human rights",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Ales_Bialiatski_-_2020_%28cropped%29.jpg/200px-Ales_Bialiatski_-_2020_%28cropped%29.jpg",
+                story: "The 2022 prize was shared between Belarusian human rights advocate Ales Bialiatski, the Russian human rights organization Memorial, and the Ukrainian human rights organization Center for Civil Liberties. Together they represent civil society in their home countries and have for many years promoted the right to criticize power and protect fundamental rights of citizens."
+            },
+            {
+                name: "Maria Ressa & Dmitry Muratov",
+                year: 2021,
+                reason: "For safeguarding freedom of expression",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Maria_Ressa_in_2021.jpg/200px-Maria_Ressa_in_2021.jpg",
+                story: "Maria Ressa (Philippines) and Dmitry Muratov (Russia) received the prize for their courageous fight for freedom of expression in their respective countries. Ressa co-founded Rappler, an investigative journalism site, while Muratov is editor of Novaya Gazeta. Both have faced persecution for exposing corruption and human rights abuses."
+            },
+            {
+                name: "World Food Programme",
+                year: 2020,
+                reason: "For combating hunger and promoting peace",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/World_Food_Programme_Logo_Simple.svg/200px-World_Food_Programme_Logo_Simple.svg.png",
+                story: "The World Food Programme (WFP) is the world's largest humanitarian organization, providing food assistance in emergencies and working with communities to improve nutrition and build resilience. In 2019 alone, WFP assisted nearly 100 million people in 88 countries. The committee highlighted how hunger and armed conflict feed off each other."
+            },
+            {
+                name: "Abiy Ahmed Ali",
+                year: 2019,
+                reason: "For peace initiative to resolve border conflict with Eritrea",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Abiy_Ahmed_2019.jpg/200px-Abiy_Ahmed_2019.jpg",
+                story: "Ethiopian Prime Minister Abiy Ahmed received the prize for his decisive initiative to resolve the border conflict with neighboring Eritrea. After taking office in 2018, he reached out to Eritrea's president, and within months the two countries signed a declaration ending the state of war that had existed since 1998."
+            },
+            {
+                name: "Denis Mukwege & Nadia Murad",
+                year: 2018,
+                reason: "For efforts to end sexual violence in war",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Denis_Mukwege_-_2018_%28cropped%29.jpg/200px-Denis_Mukwege_-_2018_%28cropped%29.jpg",
+                story: "Dr. Denis Mukwege has treated thousands of victims of sexual violence in the Democratic Republic of Congo. Nadia Murad, a Yazidi woman, was held as a sex slave by ISIS and has become an advocate for victims of sexual violence. Together they represent the global fight against sexual violence as a weapon of war."
+            },
+            {
+                name: "ICAN",
+                year: 2017,
+                reason: "For work to achieve nuclear weapons prohibition",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/ICAN_Regular_Logo.svg/200px-ICAN_Regular_Logo.svg.png",
+                story: "The International Campaign to Abolish Nuclear Weapons (ICAN) is a coalition of non-governmental organizations promoting adherence to the Treaty on the Prohibition of Nuclear Weapons. ICAN's efforts were instrumental in bringing about the treaty, which was adopted by 122 nations in 2017."
+            },
+            {
+                name: "Juan Manuel Santos",
+                year: 2016,
+                reason: "For efforts to end Colombia's civil war",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Juan_Manuel_Santos_2018.jpg/200px-Juan_Manuel_Santos_2018.jpg",
+                story: "Colombian President Juan Manuel Santos was awarded for his resolute efforts to bring the country's more than 50-year-long civil war to an end. The conflict with FARC guerrillas had cost over 220,000 lives and displaced millions. The peace agreement was reached after years of negotiations."
+            },
+            {
+                name: "Tunisian National Dialogue Quartet",
+                year: 2015,
+                reason: "For building pluralistic democracy in Tunisia",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Nobel_Peace_Prize_2015_-_Tunisian_National_Dialogue_Quartet.jpg/200px-Nobel_Peace_Prize_2015_-_Tunisian_National_Dialogue_Quartet.jpg",
+                story: "This quartet of civil society organizations helped Tunisia achieve a peaceful transition to democracy following the 2011 Jasmine Revolution. When the country seemed on the brink of civil war in 2013, these four groups established an alternative peaceful political process."
+            },
+            {
+                name: "Kailash Satyarthi & Malala Yousafzai",
+                year: 2014,
+                reason: "For struggle against child suppression and for children's rights",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Malala_Yousafzai_-_2019_%28cropped%29.jpg/200px-Malala_Yousafzai_-_2019_%28cropped%29.jpg",
+                story: "Kailash Satyarthi from India and Malala Yousafzai from Pakistan were recognized for their struggle against the suppression of children and for the right of all children to education. Malala, who was shot by the Taliban at age 15, became the youngest Nobel laureate ever at 17."
+            },
+            {
+                name: "OPCW",
+                year: 2013,
+                reason: "For efforts to eliminate chemical weapons",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/OPCW_The_Hague.jpg/200px-OPCW_The_Hague.jpg",
+                story: "The Organisation for the Prohibition of Chemical Weapons works to implement the Chemical Weapons Convention, which prohibits the development, production, stockpiling and use of chemical weapons. The organization has verified the destruction of over 98% of all declared chemical weapon stockpiles."
+            },
+            {
+                name: "European Union",
+                year: 2012,
+                reason: "For advancing peace and reconciliation in Europe",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Flag_of_Europe.svg/200px-Flag_of_Europe.svg.png",
+                story: "The EU received the prize for over six decades of contributions to the advancement of peace and reconciliation, democracy and human rights in Europe. The committee emphasized how the EU transformed Europe from a continent of war to a continent of peace."
+            },
+            {
+                name: "Ellen Johnson Sirleaf, Leymah Gbowee & Tawakkol Karman",
+                year: 2011,
+                reason: "For non-violent struggle for women's safety and rights",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Ellen_Johnson_Sirleaf_detail_071024-D-9880W-027.jpg/200px-Ellen_Johnson_Sirleaf_detail_071024-D-9880W-027.jpg",
+                story: "Three women shared the prize: Liberian President Ellen Johnson Sirleaf (Africa's first elected female head of state), Liberian peace activist Leymah Gbowee, and Yemeni journalist Tawakkol Karman. They were honored for their non-violent struggle for the safety of women and for women's rights."
+            },
+            {
+                name: "Liu Xiaobo",
+                year: 2010,
+                reason: "For long non-violent struggle for human rights in China",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Liu_Xiaobo.jpg/200px-Liu_Xiaobo.jpg",
+                story: "Liu Xiaobo was a Chinese literary critic, human rights activist, and Nobel laureate who called for political reforms and was involved in campaigns to end communist rule. He was imprisoned multiple times and died in custody in 2017. His empty chair at the Nobel ceremony became a powerful symbol."
+            },
+            {
+                name: "Barack Obama",
+                year: 2009,
+                reason: "For efforts to strengthen international diplomacy",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/President_Barack_Obama.jpg/200px-President_Barack_Obama.jpg",
+                story: "US President Barack Obama received the prize for his extraordinary efforts to strengthen international diplomacy and cooperation between peoples. The committee highlighted his vision of a world without nuclear weapons and his outreach to the Muslim world."
+            },
+            {
+                name: "Martti Ahtisaari",
+                year: 2008,
+                reason: "For efforts to resolve international conflicts",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Martti_Ahtisaari%2C_former_President_of_Finland_%282008%29.jpg/200px-Martti_Ahtisaari%2C_former_President_of_Finland_%282008%29.jpg",
+                story: "Former Finnish President Martti Ahtisaari was recognized for his important efforts over more than three decades to resolve international conflicts. His mediation work included Namibia, Aceh (Indonesia), Kosovo, and Iraq."
+            },
+            {
+                name: "Al Gore & IPCC",
+                year: 2007,
+                reason: "For efforts to build knowledge about climate change",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Al_Gore_at_SapphireNow_2010_%28cropped%29.jpg/200px-Al_Gore_at_SapphireNow_2010_%28cropped%29.jpg",
+                story: "Former US Vice President Al Gore and the Intergovernmental Panel on Climate Change shared the prize for their efforts to build and disseminate greater knowledge about man-made climate change. Gore's documentary 'An Inconvenient Truth' brought climate change into mainstream conversation."
+            },
+            {
+                name: "Muhammad Yunus & Grameen Bank",
+                year: 2006,
+                reason: "For efforts to create economic development from below",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Muhammad_Yunus_at_the_World_Economic_Forum_2012.jpg/200px-Muhammad_Yunus_at_the_World_Economic_Forum_2012.jpg",
+                story: "Muhammad Yunus, the 'banker to the poor,' and his Grameen Bank pioneered the concept of microcredit - tiny loans to the poorest of the poor to help them start small businesses. The model has since been replicated in over 100 countries."
+            },
+            {
+                name: "IAEA & Mohamed ElBaradei",
+                year: 2005,
+                reason: "For efforts to prevent nuclear energy for military purposes",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Mohamed_el-Baradei.jpg/200px-Mohamed_el-Baradei.jpg",
+                story: "The International Atomic Energy Agency and its Director General Mohamed ElBaradei were honored for their efforts to prevent nuclear energy from being used for military purposes and to ensure that nuclear energy for peaceful purposes is used in the safest possible way."
+            },
+            {
+                name: "Wangari Maathai",
+                year: 2004,
+                reason: "For contribution to sustainable development, democracy and peace",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Wangari_Maathai_portrait_by_Martin_Rowe.jpg/200px-Wangari_Maathai_portrait_by_Martin_Rowe.jpg",
+                story: "Kenyan environmentalist Wangari Maathai was the first African woman to win the Nobel Peace Prize. She founded the Green Belt Movement, which has planted over 51 million trees in Kenya. She linked environmental conservation to democracy and women's rights."
+            },
+            {
+                name: "Shirin Ebadi",
+                year: 2003,
+                reason: "For efforts for democracy and human rights, especially women and children",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Shirin_Ebadi_%282011%29.jpg/200px-Shirin_Ebadi_%282011%29.jpg",
+                story: "Shirin Ebadi was the first Iranian and first Muslim woman to receive the Nobel Peace Prize. A former judge and human rights lawyer, she founded the Centre for the Defence of Human Rights in Iran and has represented many dissidents and activists."
+            },
+            {
+                name: "Jimmy Carter",
+                year: 2002,
+                reason: "For decades of effort to find peaceful solutions to conflicts",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/JimmyCarterPortrait2.jpg/200px-JimmyCarterPortrait2.jpg",
+                story: "Former US President Jimmy Carter was honored for his decades of untiring effort to find peaceful solutions to international conflicts, advance democracy and human rights, and promote economic and social development. The Carter Center has monitored over 100 elections worldwide."
+            },
+            {
+                name: "United Nations & Kofi Annan",
+                year: 2001,
+                reason: "For work for a better organized and more peaceful world",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Kofi_Annan_2012_%28cropped%29.jpg/200px-Kofi_Annan_2012_%28cropped%29.jpg",
+                story: "The UN and Secretary-General Kofi Annan shared the prize for their work for a better organized and more peaceful world. Annan, the first Black African to lead the UN, focused on fighting HIV/AIDS, reforming the organization, and championing human rights."
+            },
+            {
+                name: "Kim Dae-jung",
+                year: 2000,
+                reason: "For work for democracy and human rights, especially reconciliation with North Korea",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Kim_Dae-jung_%28Cropped%29.jpg/200px-Kim_Dae-jung_%28Cropped%29.jpg",
+                story: "South Korean President Kim Dae-jung was recognized for his Sunshine Policy of engagement with North Korea, which led to the first-ever inter-Korean summit in 2000. A former dissident who survived kidnapping and death sentences, he championed democracy in South Korea."
+            },
+            {
+                name: "Doctors Without Borders",
+                year: 1999,
+                reason: "For pioneering humanitarian work on several continents",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/MSF_Logo.svg/200px-MSF_Logo.svg.png",
+                story: "Médecins Sans Frontières (Doctors Without Borders) was founded in 1971 by French doctors who believed that all people have the right to medical care regardless of geography or politics. The organization provides emergency medical assistance in conflict zones, epidemics, and natural disasters worldwide."
+            },
+            {
+                name: "John Hume & David Trimble",
+                year: 1998,
+                reason: "For efforts to find peaceful solution to Northern Ireland conflict",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/John_Hume_-_2008.jpg/200px-John_Hume_-_2008.jpg",
+                story: "Northern Irish politicians John Hume (SDLP) and David Trimble (UUP) were key architects of the Good Friday Agreement, which brought an end to decades of violence in Northern Ireland known as 'The Troubles.' The agreement established power-sharing between nationalists and unionists."
+            },
+            {
+                name: "ICBL & Jody Williams",
+                year: 1997,
+                reason: "For work for banning and clearing anti-personnel mines",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Jody_Williams_%282013%29.jpg/200px-Jody_Williams_%282013%29.jpg",
+                story: "The International Campaign to Ban Landmines and its coordinator Jody Williams were honored for their work leading to the Ottawa Treaty banning anti-personnel mines. The campaign brought together over 1,000 NGOs in 60 countries and achieved a treaty signed by 122 nations."
+            },
+            {
+                name: "Carlos Belo & José Ramos-Horta",
+                year: 1996,
+                reason: "For work towards just and peaceful solution for East Timor",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Jos%C3%A9_Ramos-Horta.jpg/200px-Jos%C3%A9_Ramos-Horta.jpg",
+                story: "Bishop Carlos Belo and resistance leader José Ramos-Horta were recognized for their work toward a just and peaceful solution to the conflict in East Timor. Their efforts eventually led to East Timor's independence from Indonesia in 2002."
+            },
+            {
+                name: "Joseph Rotblat & Pugwash",
+                year: 1995,
+                reason: "For efforts to diminish nuclear weapons role in politics",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Rotblat.jpg/200px-Rotblat.jpg",
+                story: "Physicist Joseph Rotblat was the only scientist to leave the Manhattan Project on moral grounds. He co-founded the Pugwash Conferences, which brought together scientists from East and West during the Cold War to work on nuclear disarmament."
+            },
+            {
+                name: "Yasser Arafat, Shimon Peres & Yitzhak Rabin",
+                year: 1994,
+                reason: "For efforts to create peace in the Middle East",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Flickr_-_Government_Press_Office_%28GPO%29_-_THE_NOBEL_PEACE_PRIZE_LAUREATES_FOR_1994_IN_OSLO..jpg/200px-Flickr_-_Government_Press_Office_%28GPO%29_-_THE_NOBEL_PEACE_PRIZE_LAUREATES_FOR_1994_IN_OSLO..jpg",
+                story: "PLO Chairman Yasser Arafat and Israeli leaders Shimon Peres and Yitzhak Rabin shared the prize for the Oslo Accords, a landmark attempt to resolve the Israeli-Palestinian conflict. The famous handshake between Arafat and Rabin on the White House lawn symbolized hope for peace."
+            },
+            {
+                name: "Nelson Mandela & F.W. de Klerk",
+                year: 1993,
+                reason: "For peaceful termination of apartheid and laying foundations for democracy",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Nelson_Mandela_1994.jpg/200px-Nelson_Mandela_1994.jpg",
+                story: "Nelson Mandela spent 27 years in prison for opposing apartheid before becoming South Africa's first Black president. F.W. de Klerk was the last apartheid-era president who released Mandela and negotiated the transition to democracy. Together they achieved a peaceful end to apartheid."
+            },
+            {
+                name: "Rigoberta Menchú",
+                year: 1992,
+                reason: "For work for social justice and indigenous peoples' rights",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Rigoberta_Mench%C3%BA_Tum.jpg/200px-Rigoberta_Mench%C3%BA_Tum.jpg",
+                story: "Guatemalan indigenous rights activist Rigoberta Menchú was recognized for her work for social justice and ethno-cultural reconciliation. Her autobiography brought international attention to the plight of Guatemala's indigenous peoples during the civil war."
+            },
+            {
+                name: "Aung San Suu Kyi",
+                year: 1991,
+                reason: "For non-violent struggle for democracy and human rights",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Aung_San_Suu_Kyi_17_November_2011.jpg/200px-Aung_San_Suu_Kyi_17_November_2011.jpg",
+                story: "Myanmar opposition leader Aung San Suu Kyi spent 15 years under house arrest for her pro-democracy activism. She received the prize while still detained. Her reputation was later tarnished by her handling of the Rohingya crisis when she became de facto leader."
+            },
+            {
+                name: "Mikhail Gorbachev",
+                year: 1990,
+                reason: "For leading role in peace process and ending Cold War",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Mikhail_Gorbachev_1987.jpg/200px-Mikhail_Gorbachev_1987.jpg",
+                story: "Soviet leader Mikhail Gorbachev's policies of glasnost (openness) and perestroika (restructuring) led to the end of the Cold War and the dissolution of the Soviet Union. He reduced nuclear arsenals and allowed Eastern European countries to choose their own paths."
+            },
+            {
+                name: "Dalai Lama",
+                year: 1989,
+                reason: "For advocating peaceful solutions based on tolerance and mutual respect",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Dalailama1_20121014_4639.jpg/200px-Dalailama1_20121014_4639.jpg",
+                story: "The 14th Dalai Lama, Tenzin Gyatso, has advocated for Tibetan autonomy through non-violent means since fleeing Chinese occupation in 1959. His philosophy of compassion and non-violence has made him one of the world's most recognized spiritual leaders."
+            },
+            {
+                name: "UN Peacekeeping Forces",
+                year: 1988,
+                reason: "For maintaining peace in conflict areas around the world",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/UN_Soldiers_in_Eritrea.jpeg/200px-UN_Soldiers_in_Eritrea.jpeg",
+                story: "UN Peacekeeping Forces, often called 'Blue Helmets,' were honored for their role in maintaining peace in conflict areas. Since 1948, over one million military, police, and civilian personnel have served in UN peacekeeping operations worldwide."
+            },
+            {
+                name: "Oscar Arias Sánchez",
+                year: 1987,
+                reason: "For work for peace in Central America",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Oscar_Arias_Sanchez%2C_President_of_Costa_Rica.jpg/200px-Oscar_Arias_Sanchez%2C_President_of_Costa_Rica.jpg",
+                story: "Costa Rican President Oscar Arias authored the Esquipulas Peace Agreement, which brought an end to civil wars in Nicaragua, El Salvador, and Guatemala. His peace plan established a framework for democratization and disarmament in Central America."
+            },
+            {
+                name: "Elie Wiesel",
+                year: 1986,
+                reason: "For being a messenger to mankind about peace and human dignity",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Elie_Wiesel_2012_Shankbone.JPG/200px-Elie_Wiesel_2012_Shankbone.JPG",
+                story: "Holocaust survivor Elie Wiesel wrote over 60 books, including 'Night,' his memoir of the concentration camps. He dedicated his life to ensuring the Holocaust would never be forgotten and speaking out against injustice, racism, and genocide worldwide."
+            },
+            {
+                name: "IPPNW",
+                year: 1985,
+                reason: "For spreading information about nuclear war consequences",
+                photo: "https://upload.wikimedia.org/wikipedia/en/thumb/8/81/IPPNW-logo.svg/200px-IPPNW-logo.svg.png",
+                story: "International Physicians for the Prevention of Nuclear War was founded by American and Soviet doctors during the Cold War. The organization used medical expertise to document and publicize the devastating health effects of nuclear war, building pressure for disarmament."
+            },
+            {
+                name: "Desmond Tutu",
+                year: 1984,
+                reason: "For role as unifying leader in campaign to resolve apartheid",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Archbishop_Desmond_Tutu_on_his_79th_birthday.jpg/200px-Archbishop_Desmond_Tutu_on_his_79th_birthday.jpg",
+                story: "Archbishop Desmond Tutu was the moral voice of the anti-apartheid movement in South Africa. He advocated for nonviolent resistance and economic sanctions. After apartheid ended, he chaired the Truth and Reconciliation Commission, promoting healing over revenge."
+            },
+            {
+                name: "Lech Wałęsa",
+                year: 1983,
+                reason: "For defending workers' rights to establish their own organizations",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Lech_Wa%C5%82%C4%99sa_prezydent_RP.jpg/200px-Lech_Wa%C5%82%C4%99sa_prezydent_RP.jpg",
+                story: "Polish electrician Lech Wałęsa co-founded Solidarity, the first independent labor union in the Soviet bloc. Despite martial law and imprisonment, the movement survived and led to free elections in 1989. Wałęsa became Poland's first democratically elected president."
+            },
+            {
+                name: "Mother Teresa",
+                year: 1979,
+                reason: "For work helping suffering humanity",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Mother_Teresa_1.jpg/200px-Mother_Teresa_1.jpg",
+                story: "Mother Teresa founded the Missionaries of Charity in Calcutta to serve 'the poorest of the poor.' Her order grew to operate hospices, orphanages, and care centers worldwide. She was canonized as a saint by the Catholic Church in 2016."
+            },
+            {
+                name: "Anwar Sadat & Menachem Begin",
+                year: 1978,
+                reason: "For negotiating peace between Egypt and Israel",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Anwar_Sadat_1978.jpg/200px-Anwar_Sadat_1978.jpg",
+                story: "Egyptian President Anwar Sadat and Israeli Prime Minister Menachem Begin signed the Camp David Accords, the first peace agreement between Israel and an Arab country. Sadat's historic visit to Jerusalem broke decades of hostility. He was assassinated in 1981."
+            },
+            {
+                name: "Amnesty International",
+                year: 1977,
+                reason: "For protecting human rights of prisoners of conscience",
+                photo: "https://upload.wikimedia.org/wikipedia/en/thumb/e/ee/Amnesty_International_logo.svg/200px-Amnesty_International_logo.svg.png",
+                story: "Amnesty International was founded in 1961 after a British lawyer wrote about two Portuguese students imprisoned for raising a toast to freedom. The organization campaigns against human rights abuses worldwide, focusing on prisoners of conscience, torture, and the death penalty."
+            },
+            {
+                name: "Andrei Sakharov",
+                year: 1975,
+                reason: "For struggle for human rights and against abuse of power",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Andrei_Sakharov_1989.jpg/200px-Andrei_Sakharov_1989.jpg",
+                story: "Soviet nuclear physicist Andrei Sakharov helped develop the hydrogen bomb but became a leading dissident, advocating for civil liberties and nuclear disarmament. He was exiled to Gorky for his activism. The EU's human rights prize is named after him."
+            },
+            {
+                name: "Martin Luther King Jr.",
+                year: 1964,
+                reason: "For non-violent campaign against racism",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Martin_Luther_King%2C_Jr..jpg/200px-Martin_Luther_King%2C_Jr..jpg",
+                story: "Martin Luther King Jr. led the American civil rights movement using non-violent civil disobedience inspired by Gandhi. His 'I Have a Dream' speech became a defining moment in American history. At 35, he was the youngest Nobel Peace Prize laureate at the time."
+            },
+            {
+                name: "Albert Schweitzer",
+                year: 1952,
+                reason: "For philosophy of reverence for life and humanitarian work",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Bundesarchiv_Bild_183-D0116-0041-019%2C_Albert_Schweitzer.jpg/200px-Bundesarchiv_Bild_183-D0116-0041-019%2C_Albert_Schweitzer.jpg",
+                story: "Albert Schweitzer was a theologian, philosopher, and physician who built a hospital in Gabon to serve Africans. His philosophy of 'Reverence for Life' influenced the environmental and animal rights movements. He used his prize money to expand his hospital."
+            },
+            {
+                name: "ICRC",
+                year: 1944,
+                reason: "For humanitarian work during World War II",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Flag_of_the_Red_Cross.svg/200px-Flag_of_the_Red_Cross.svg.png",
+                story: "The International Committee of the Red Cross received its third Nobel Prize (also 1917, 1963) for its humanitarian work during WWII. The ICRC visited prisoner-of-war camps, transmitted messages between families, and provided relief to civilians."
+            },
+            {
+                name: "Theodore Roosevelt",
+                year: 1906,
+                reason: "For mediating end to Russo-Japanese War",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/President_Roosevelt_-_Pach_Bros.tif/lossy-page1-200px-President_Roosevelt_-_Pach_Bros.tif.jpg",
+                story: "US President Theodore Roosevelt was the first American Nobel laureate, honored for mediating the Treaty of Portsmouth that ended the Russo-Japanese War. Though known as a war hero, he believed in speaking softly while carrying a big stick."
+            },
+            {
+                name: "Henry Dunant & Frédéric Passy",
+                year: 1901,
+                reason: "For founding Red Cross and peace movement",
+                photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Henry_Dunant-young.jpg/200px-Henry_Dunant-young.jpg",
+                story: "The first Nobel Peace Prizes went to Henry Dunant, founder of the Red Cross after witnessing the Battle of Solferino, and Frédéric Passy, founder of the first French peace society. Dunant's 'A Memory of Solferino' led to the Geneva Conventions."
+            }
+        ];
+
+        let isSpinning = false;
+        let currentWinner = null;
+
+        function spin() {
+            if (isSpinning) return;
+
+            isSpinning = true;
+            const btn = document.getElementById('spinBtn');
+            const display = document.getElementById('display');
+            const box = document.getElementById('rouletteBox');
+            const photoContainer = document.getElementById('photoContainer');
+            const storySection = document.getElementById('storySection');
+
+            btn.disabled = true;
+            box.classList.add('spinning');
+            box.classList.remove('winner');
+            storySection.classList.remove('visible');
+            document.getElementById('storyContent').classList.remove('expanded');
+            document.getElementById('storyToggle').setAttribute('aria-expanded', 'false');
+
+            let iterations = 0;
+            const totalIterations = 40 + Math.floor(Math.random() * 20);
+            let delay = 50;
+
+            function iterate() {
+                const randomIndex = Math.floor(Math.random() * laureates.length);
+                const laureate = laureates[randomIndex];
+                display.innerHTML = `${laureate.name}<span class="year">${laureate.year}</span><span class="reason">${laureate.reason}</span>`;
+                photoContainer.innerHTML = `<img src="${laureate.photo}" alt="${laureate.name}" onerror="this.parentElement.innerHTML='<span class=\\'photo-placeholder\\'>🏅</span>'">`;
+
+                iterations++;
+
+                if (iterations < totalIterations) {
+                    if (iterations > totalIterations * 0.5) {
+                        delay += 10;
+                    }
+                    if (iterations > totalIterations * 0.7) {
+                        delay += 20;
+                    }
+                    if (iterations > totalIterations * 0.9) {
+                        delay += 40;
+                    }
+                    setTimeout(iterate, delay);
+                } else {
+                    // Final selection
+                    const finalIndex = Math.floor(Math.random() * laureates.length);
+                    currentWinner = laureates[finalIndex];
+                    display.innerHTML = `${currentWinner.name}<span class="year">${currentWinner.year}</span><span class="reason">${currentWinner.reason}</span>`;
+                    photoContainer.innerHTML = `<img src="${currentWinner.photo}" alt="${currentWinner.name}" onerror="this.parentElement.innerHTML='<span class=\\'photo-placeholder\\'>🏅</span>'">`;
+
+                    box.classList.remove('spinning');
+                    box.classList.add('winner');
+
+                    // Show story section
+                    storySection.classList.add('visible');
+                    document.getElementById('storyTitle').textContent = `ABOUT ${currentWinner.name.toUpperCase()}`;
+                    document.getElementById('storyText').textContent = currentWinner.story;
+
+                    // Confetti!
+                    launchConfetti();
+
+                    setTimeout(() => {
+                        btn.disabled = false;
+                        isSpinning = false;
+                    }, 1000);
+                }
+            }
+
+            iterate();
+        }
+
+        function toggleStory() {
+            const content = document.getElementById('storyContent');
+            const toggle = document.getElementById('storyToggle');
+            const isExpanded = content.classList.contains('expanded');
+
+            content.classList.toggle('expanded');
+            toggle.textContent = isExpanded ? 'READ FULL STORY' : 'HIDE STORY';
+            toggle.setAttribute('aria-expanded', !isExpanded);
+        }
+
+        function launchConfetti() {
+            const duration = 3000;
+            const end = Date.now() + duration;
+
+            const colors = ['#ffd700', '#b8860b', '#daa520', '#f0e68c', '#ffdf00'];
+
+            (function frame() {
+                confetti({
+                    particleCount: 3,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: colors
+                });
+                confetti({
+                    particleCount: 3,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: colors
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
+
+            // Big burst in the middle
+            setTimeout(() => {
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 },
+                    colors: colors
+                });
+            }, 300);
+        }
+    </script>
+</body>
+</html>
